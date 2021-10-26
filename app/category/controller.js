@@ -56,9 +56,8 @@ module.exports = {
 
       const category = await Category.findOne({ _id: id });
 
-      res.render("admin/category/edit", {
+      res.render('admin/category/edit', {
         category,
-        
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
