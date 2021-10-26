@@ -3,7 +3,10 @@ const Category = require("./model");
 module.exports = {
   index: async (req, res) => {
     try {
-      res.render("admin/category/view_category");
+      const category = await Category.find();
+      res.render("admin/category/view_category", {
+        category,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -28,5 +31,5 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  }
+  },
 };
