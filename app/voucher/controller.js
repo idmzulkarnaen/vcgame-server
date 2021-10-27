@@ -157,7 +157,7 @@ module.exports = {
               name,
               category,
               nominals,
-              // thumbnial: filename
+              thumbnial: filename
             })
             
 
