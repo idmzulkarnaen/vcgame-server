@@ -54,5 +54,61 @@ module.exports={
     }
   },
 
+  viewEdit : async(req, res)=>{
+    try {
+      const { id } = req.params
+      
+      const bank = await Bank.findOne({_id : id})
+
+      res.render('admin/bank/edit', {
+        bank
+      })
+      
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/bank')
+    }
+  },
   
+  actionEdit: async(req, res)=>{
+    try {
+      const { id } = req.params;
+      const { name, bankName, noRekening } = req.body
+
+      await Bank.findOneAndUpdate({
+        _id: id
+      },{ name, bankName, noRekening  });
+
+      req.flash('alertMessage', "Berhasil ubah bank")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/bank')
+      
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/bank')
+    }
+  },
+
+  actionDelete: async(req, res)=>{
+    try {
+      const { id } = req.params;
+
+      await Bank.findOneAndRemove({
+        _id: id
+      });
+
+      req.flash('alertMessage', "Berhasil hapus bank")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/bank')
+      
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/bank')
+    }
+  }
 }
