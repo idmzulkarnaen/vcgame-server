@@ -9,6 +9,9 @@ module.exports={
       const alert = { message: alertMessage, status: alertStatus}
       const bank = await Bank.find()
 
+      console.log("bank>>>>")
+      console.log(bank)
+
       res.render('admin/bank/view_bank',{
         bank,
         alert
@@ -34,9 +37,9 @@ module.exports={
 
   actionCreate : async(req, res)=>{
     try {
-      const { name, nameBank, noRekening } = req.body
+      const { name, bankName, noRekening } = req.body
 
-      let bank = await Bank({ name, nameBank, noRekening })
+      let bank = await Bank({ name, bankName, noRekening })
       await bank.save();
 
       req.flash('alertMessage', "Berhasil tambah bank")
