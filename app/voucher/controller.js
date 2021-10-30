@@ -89,9 +89,7 @@ module.exports = {
         const voucher = new Voucher({
           name,
           category,
-          nominals,
-          name: req.session.user.name,
-          title: 'Halaman Ubah Voucher'
+          nominals
         })
 
         await voucher.save();
@@ -120,7 +118,9 @@ module.exports = {
       res.render('admin/voucher/edit', {
         voucher,
         nominal,
-        category
+        category,
+        name: req.session.user.name,
+        title: 'Halaman Ubah Voucher'
       })
 
     } catch (err) {
