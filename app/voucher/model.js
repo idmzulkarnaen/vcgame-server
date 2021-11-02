@@ -13,7 +13,7 @@ let voucherSchema = mongoose.Schema({
     default: 'Y'
   },
 
-  thumbnial: {
+  thumbnail: {
     type: String
   },
 
